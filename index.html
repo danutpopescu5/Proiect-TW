@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StudioDNG - Mockup</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="app-header">
+        <img src="logo.png" alt="StudioDNG Logo" class="app-logo" />
+        <p>Gestionarea ședințelor foto și a proiectelor media.</p>
+        <p class="app-count">3 elemente, dintre care 2 active</p>
+    </header>
+
+    <main class="container">
+        <!-- Panoul 1: Formularul de adăugare -->
+        <section class="panel">
+            <h2>Adaugă proiect</h2>
+            <form class="item-form">
+                <label>Titlu 
+                    <input type="text" name="titlu" placeholder="Ex: Formula Student Balkans 2026" />
+                </label>
+                <label>Etichetă
+                    <select name="eticheta">
+                        <option value="Formula Student">Formula Student</option>
+                        <option value="Drift">Drift</option>
+                        <option value="Private">Private</option>
+                    </select>
+                </label>
+                <button type="submit">Adaugă</button>
+            </form>
+        </section>
+
+        <!-- Panoul 2: Lista de carduri -->
+        <section class="panel">
+            <h2>Proiectele mele</h2>
+            <ul class="item-list">
+                <li class="item-card">
+                    <div>
+                        <h3><a href="galerie-balkans2026.html" class="gallery-link">Formula Student Balkans 2026</a></h3>
+                        <span class="badge badge-formula">Formula Student</span>
+                    </div>
+                    <span class="status">Activ</span>
+                </li>
+                <li class="item-card done">
+                    <div>
+                        <h3>Bucharest at Night</h3>
+                        <span class="badge badge-drift">Street Photography</span>
+                    </div>
+                    <span class="status">Gata</span>
+                </li>
+                <li class="item-card">
+                    <div>
+                        <h3>Private Session</h3>
+                        <span class="badge badge-private">Private</span>
+                    </div>
+                    <span class="status">Activ</span>
+                </li>
+            </ul>
+        </section>
+
+    <footer class="app-footer">
+        Proiect Tehnologii Web - StudioDNG
+    </footer>
+</body>
+</html>
