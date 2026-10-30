@@ -1,3 +1,5 @@
+import ProiectList from "./components/ProiectList.jsx";
+
 const proiecte = [
     { id: 1, titlu: "Formula Student Balkans 2026", gata: false, eticheta: "Formula Student" },
     { id: 2, titlu: "Timișoara Drift Grand Prix Final", gata: true, eticheta: "Drift" },
@@ -20,8 +22,7 @@ export default function App() {
             <main className="container">
                 <section className="panel">
                     <h2>Proiectele mele</h2>
-                    {/* Temporar în Etapa 3: datele brute afișate ca JSON */}
-                    <pre>{JSON.stringify(proiecte, null, 2)}</pre>
+                    <ProiectList proiecte={proiecte} />
                 </section>
             </main>
 
