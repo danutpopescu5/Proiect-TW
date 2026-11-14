@@ -86,6 +86,19 @@ Then open the address printed in the terminal (`http://localhost:5173`).
 | S6-R6 | README Stage 6 section + AI log | `README.md`, `ai-log/etapa-06.md` | read |
 | S6-R7 | commit "Stage 6" pushed | link to the commit | commit history |
 
+### Checklist Etapa 7
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S7-R1 | controlled form: value + onChange on every field | [`frontend/src/components/ProiectForm.jsx#L50-L75`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/frontend/src/components/ProiectForm.jsx#L50-L75) | read |
+| S7-R2 | empty title shows an error, nothing is sent | [`frontend/src/components/ProiectForm.jsx#L18-L26`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/frontend/src/components/ProiectForm.jsx#L18-L26) | submit empty, watch Network |
+| S7-R3 | added item shows in the list and survives refresh | [`frontend/src/App.jsx#L44-L47`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/frontend/src/App.jsx#L44-L47), [`frontend/src/api.js#L18-L25`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/frontend/src/api.js#L18-L25) | add, refresh |
+| S7-R4 | toggle and delete survive refresh | [`frontend/src/App.jsx#L49-L67`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/frontend/src/App.jsx#L49-L67) | toggle/delete, refresh |
+| S7-R5 | button disabled while sending, form cleared only on success | [`frontend/src/components/ProiectForm.jsx#L28-L46`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/frontend/src/components/ProiectForm.jsx#L28-L46) | –delay 3000; stop API and submit |
+| S7-R6 | tw.json and the data-testid attributes from table 7.3 | [`tw.json`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/tw.json), [`frontend/src/components/ProiectCard.jsx#L15-L42`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/frontend/src/components/ProiectCard.jsx#L15-L42) | querySelectorAll in the console |
+| S7-R7 | README Stage 7 section + AI log | [`README.md`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/README.md), [`ai-log/etapa-07.md`](https://github.com/danutpopescu5/Proiect-TW/blob/ad3192936247de7472ed5783d51a6fdeec9962ca/ai-log/etapa-07.md) | read |
+| S7-R8 | commit "Stage 7" pushed | [`commit ad31929`](https://github.com/danutpopescu5/Proiect-TW/commit/ad3192936247de7472ed5783d51a6fdeec9962ca) | commit history |
+
 ## AI usage
 În dezvoltarea acestui proiect s-au utilizat instrumente AI (Gemini / ChatGPT) pentru asistență la structurarea codului React, depanarea erorilor CSS/JSX și formatarea documentației. Jurnalele detaliate pentru fiecare etapă se găsesc în folderul `ai-log/`:
 - [Stage 1 AI Log](ai-log/etapa-01.md)
