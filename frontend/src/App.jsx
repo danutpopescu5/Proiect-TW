@@ -1,11 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProiectList from "./components/ProiectList.jsx";
-
-const PROIECTE_INITIALE = [
-    { id: 1, titlu: "Formula Student Balkans 2026", gata: false, eticheta: "Formula Student" },
-    { id: 2, titlu: "Autofest Drift", gata: true, eticheta: "Drift" },
-    { id: 3, titlu: "Private Session", gata: false, eticheta: "Private" }
-];
+import { fetchProiecte } from "./api.js";
 
 function temaInitiala() {
     document.documentElement.dataset.theme = "dark";
@@ -13,9 +8,33 @@ function temaInitiala() {
 }
 
 export default function App() {
-    const [proiecte, setProiecte] = useState(PROIECTE_INITIALE);
+    const [proiecte, setProiecte] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [tema, setTema] = useState(temaInitiala);
 
+    // Rulează o singură dată, după prima randare
+    useEffect(() => {
+        let ignore = false;
+
+        async function load() {
+            try {
+                const data = await fetchProiecte();
+                if (!ignore) setProiecte(data);
+            } catch (err) {
+                if (!ignore) setError(err.message);
+            } finally {
+                if (!ignore) setLoading(false);
+            }
+        }
+
+        load();
+        return () => {
+            ignore = true;
+        };
+    }, []);
+
+    // În Etapa 6 modificările rămân locale: se pierd la refresh (rezolvat în Etapa 7)
     function handleToggle(id) {
         setProiecte((prev) =>
             prev.map((t) => (t.id === id ? { ...t, gata: !t.gata } : t))
@@ -54,11 +73,19 @@ export default function App() {
             <main className="container">
                 <section className="panel">
                     <h2>Proiectele mele</h2>
-                    <ProiectList
-                        proiecte={proiecte}
-                        onToggle={handleToggle}
-                        onDelete={handleDelete}
-                    />
+                    {loading && <p className="info">Se încarcă proiectele...</p>}
+                    {error && (
+                        <p className="error">
+                            Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+                        </p>
+                    )}
+                    {!loading && !error && (
+                        <ProiectList
+                            proiecte={proiecte}
+                            onToggle={handleToggle}
+                            onDelete={handleDelete}
+                        />
+                    )}
                 </section>
             </main>
 

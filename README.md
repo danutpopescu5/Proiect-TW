@@ -42,12 +42,21 @@ The list is rendered from the data, through two components:
 ## Stage 5: local state and events
 The list lives in React state (`useState`). Checking and deleting work from the page, and the counters in the header follow automatically. A button in the header switches between light and dark mode. Changes are lost on refresh, which is what stage 6 and stage 10 fix.
 
+## Stage 6: data from a mock API
+The list is served by json-server from `db.json`. The app fetches it on load and shows a loading state and an error state.
+
+```bash
+npm run api # terminal 1, http://localhost:3001
+npm run dev # terminal 2, http://localhost:5173
+```
+
 ## How to run
 
 ```bash
 cd frontend
 npm install
-npm run dev
+npm run api # terminal 1, http://localhost:3001
+npm run dev # terminal 2, http://localhost:5173
 ```
 
 Then open the address printed in the terminal (`http://localhost:5173`).
@@ -58,7 +67,20 @@ Then open the address printed in the terminal (`http://localhost:5173`).
 - [x] Stage 3: Vite and React project
 - [x] Stage 4: components rendered from data
 - [x] Stage 5: local state and events
-- [ ] Stage 6: loading data from a mock API
+- [x] Stage 6: data from a mock API
+- [ ] Stage 7: form and validation
+
+### Checklist Etapa 6
+
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S6-R1 | npm run api starts, route shows JSON | `frontend/package.json#L11`, `frontend/db.json` | open http://localhost:3001/proiecte |
+| S6-R2 | data no longer in React code | `frontend/src/App.jsx#L11` (`useState([])`) | read |
+| S6-R3 | loading message while waiting | `frontend/src/App.jsx#L76` | `--delay 4000` |
+| S6-R4 | error message when API is down | `frontend/src/App.jsx#L77-L81` | stop npm run api, refresh |
+| S6-R5 | fetch only in api.js, URL from env | `frontend/src/api.js#L1-L11`, `frontend/.env.example` | search for fetch |
+| S6-R6 | README Stage 6 section + AI log | `README.md`, `ai-log/etapa-06.md` | read |
+| S6-R7 | commit "Stage 6" pushed | link to the commit | commit history |
 
 ## AI usage
 În dezvoltarea acestui proiect s-au utilizat instrumente AI (Gemini / ChatGPT) pentru asistență la structurarea codului React, depanarea erorilor CSS/JSX și formatarea documentației. Jurnalele detaliate pentru fiecare etapă se găsesc în folderul `ai-log/`:
@@ -67,3 +89,4 @@ Then open the address printed in the terminal (`http://localhost:5173`).
 - [Stage 3 AI Log](ai-log/etapa-03.md)
 - [Stage 4 AI Log](ai-log/etapa-04.md)
 - [Stage 5 AI Log](ai-log/etapa-05.md)
+- [Stage 6 AI Log](ai-log/etapa-06.md)

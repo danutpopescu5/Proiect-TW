@@ -10,6 +10,8 @@
     --medie: #f59e0b;
     --mica: #6b7280;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --error-bg: #fdf2f8;
+    --error-border: #fbcfe8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +23,8 @@
         --border: #2a2e39;
         --accent-soft: #1e293b;
         --shadow: none;
+        --error-bg: #3b1d2e;
+        --error-border: #6b2a4a;
     }
 }
 
@@ -32,6 +36,8 @@
     --border: #2a2e39;
     --accent-soft: #1e293b;
     --shadow: none;
+    --error-bg: #3b1d2e;
+    --error-border: #6b2a4a;
 }
 
 * {
@@ -230,4 +236,17 @@ body {
     padding: 24px 16px;
     color: var(--muted);
     font-size: 0.9rem;
+}
+
+/* Etapa 6: stări de încărcare și de eroare */
+.info {
+    color: var(--muted);
+}
+
+.error {
+    color: var(--mare);
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    border-radius: 8px;
+    padding: 10px 12px;
 }
