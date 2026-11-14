@@ -2,7 +2,11 @@ import ProiectCard from "./ProiectCard.jsx";
 
 export default function ProiectList({ proiecte, onToggle, onDelete }) {
     if (proiecte.length === 0) {
-        return <p className="empty">Nu există niciun proiect înregistrat.</p>;
+        return (
+            <p className="empty" data-testid="empty">
+                Nu există niciun proiect înregistrat.
+            </p>
+        );
     }
 
     return (

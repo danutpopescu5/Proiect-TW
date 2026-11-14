@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import ProiectList from "./components/ProiectList.jsx";
-import { fetchProiecte } from "./api.js";
+import ProiectForm from "./components/ProiectForm.jsx";
+import {
+    createProiect,
+    deleteProiect,
+    fetchProiecte,
+    updateProiect,
+} from "./api.js";
 
 function temaInitiala() {
     document.documentElement.dataset.theme = "dark";
@@ -34,15 +40,30 @@ export default function App() {
         };
     }, []);
 
-    // În Etapa 6 modificările rămân locale: se pierd la refresh (rezolvat în Etapa 7)
-    function handleToggle(id) {
-        setProiecte((prev) =>
-            prev.map((t) => (t.id === id ? { ...t, gata: !t.gata } : t))
-        );
+    // Întâi serverul, apoi state-ul: pe ecran ajunge doar ce s-a salvat
+    async function handleAdd(proiect) {
+        const creat = await createProiect(proiect); // serverul întoarce elementul cu id
+        setProiecte((prev) => [...prev, creat]);
     }
 
-    function handleDelete(id) {
-        setProiecte((prev) => prev.filter((t) => t.id !== id));
+    async function handleToggle(id) {
+        const proiect = proiecte.find((t) => t.id === id);
+        if (!proiect) return;
+        try {
+            const actualizat = await updateProiect(id, { gata: !proiect.gata });
+            setProiecte((prev) => prev.map((t) => (t.id === id ? actualizat : t)));
+        } catch (err) {
+            setError(err.message);
+        }
+    }
+
+    async function handleDelete(id) {
+        try {
+            await deleteProiect(id);
+            setProiecte((prev) => prev.filter((t) => t.id !== id));
+        } catch (err) {
+            setError(err.message);
+        }
     }
 
     function handleTema() {
@@ -72,14 +93,23 @@ export default function App() {
 
             <main className="container">
                 <section className="panel">
+                    <h2>Adaugă proiect</h2>
+                    <ProiectForm onAdd={handleAdd} />
+                </section>
+
+                <section className="panel">
                     <h2>Proiectele mele</h2>
-                    {loading && <p className="info">Se încarcă proiectele...</p>}
-                    {error && (
-                        <p className="error">
-                            Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+                    {loading && (
+                        <p className="info" data-testid="loading">
+                            Se încarcă proiectele...
                         </p>
                     )}
-                    {!loading && !error && (
+                    {error && (
+                        <p className="error" data-testid="error">
+                            {error}
+                        </p>
+                    )}
+                    {!loading && (
                         <ProiectList
                             proiecte={proiecte}
                             onToggle={handleToggle}
