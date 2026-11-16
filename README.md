@@ -53,6 +53,9 @@ npm run dev # terminal 2, http://localhost:5173
 ## Stage 7: form and validation
 Tasks can be added from the page. The form is controlled and validated, and every change (add, toggle, delete) goes to the API before it shows up in the list.
 
+## Stage 8: routing and detail page
+Three pages behind React Router: the list, a detail page at `/proiecte/:id`, and an about page, plus a 404 page. Component styles moved to CSS Modules.
+
 ## How to run
 
 ```bash
@@ -72,7 +75,8 @@ Then open the address printed in the terminal (`http://localhost:5173`).
 - [x] Stage 5: local state and events
 - [x] Stage 6: data from a mock API
 - [x] Stage 7: form and validation
-- [ ] Stage 8: routing and detail page
+- [x] Stage 8: routing and detail page
+- [ ] Stage 9: own backend with Express
 
 ### Checklist Etapa 6
 
@@ -108,3 +112,4 @@ Then open the address printed in the terminal (`http://localhost:5173`).
 - [Stage 5 AI Log](ai-log/etapa-05.md)
 - [Stage 6 AI Log](ai-log/etapa-06.md)
 - [Stage 7 AI Log](ai-log/etapa-07.md)
+- [Stage 8 AI Log](ai-log/etapa-08.md)

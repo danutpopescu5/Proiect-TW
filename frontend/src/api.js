@@ -18,6 +18,10 @@ export function fetchProiecte() {
     return request("/proiecte");
 }
 
+export function fetchProiect(id) {
+    return request(`/proiecte/${id}`);
+}
+
 export function createProiect(proiect) {
     return request("/proiecte", {
         method: "POST",
@@ -39,6 +43,7 @@ export function deleteProiect(id) {
 // Aliasuri generice pentru compatibilitate
 export {
     fetchProiecte as fetchTasks,
+    fetchProiect as fetchTask,
     createProiect as createTask,
     updateProiect as updateTask,
     deleteProiect as deleteTask,
