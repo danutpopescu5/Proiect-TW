@@ -56,16 +56,26 @@ Tasks can be added from the page. The form is controlled and validated, and ever
 ## Stage 8: routing and detail page
 Three pages behind React Router: the list, a detail page at `/proiecte/:id`, and an about page, plus a 404 page. Component styles moved to CSS Modules.
 
+## Stage 9: own backend
+`json-server` is gone. The API is an Express 5 server in `backend/`, with REST routes (`/proiecte` and `/proiecte/:id`), server-side validation (`valideazaProiect`, `parseId`), centralized error handling, `/health` endpoint, and CORS configured for `http://localhost:5173`. Data is still kept in memory and resets on restart.
+
+```bash
+# Quick API verification with curl (while backend is running on port 3001)
+curl -s -w ' -> %{http_code}\n' http://localhost:3001/proiecte
+curl -s -w ' -> %{http_code}\n' -X POST http://localhost:3001/proiecte -H "Content-Type: application/json" -d '{"titlu":"Din curl","eticheta":"Drift"}'
+curl -s -w ' -> %{http_code}\n' -X POST http://localhost:3001/proiecte -H "Content-Type: application/json" -d '{"titlu":""}'
+curl -s -w ' -> %{http_code}\n' http://localhost:3001/proiecte/999
+curl -s -w ' -> %{http_code}\n' -X DELETE http://localhost:3001/proiecte/6
+```
+
 ## How to run
 
 ```bash
-cd frontend
-npm install
-npm run api # terminal 1, http://localhost:3001
-npm run dev # terminal 2, http://localhost:5173
+cd backend && npm install && npm run dev    # terminal 1, http://localhost:3001
+cd frontend && npm install && npm run dev   # terminal 2, http://localhost:5173
 ```
 
-Then open the address printed in the terminal (`http://localhost:5173`).
+Then open the address printed in the frontend terminal (`http://localhost:5173`).
 
 ## Status
 - [x] Stage 1: static HTML and CSS mockup
@@ -76,7 +86,8 @@ Then open the address printed in the terminal (`http://localhost:5173`).
 - [x] Stage 6: data from a mock API
 - [x] Stage 7: form and validation
 - [x] Stage 8: routing and detail page
-- [ ] Stage 9: own backend with Express
+- [x] Stage 9: own backend with Express
+- [ ] Stage 10: MariaDB and full CRUD
 
 ### Checklist Etapa 6
 
@@ -126,3 +137,4 @@ Then open the address printed in the terminal (`http://localhost:5173`).
 - [Stage 6 AI Log](ai-log/etapa-06.md)
 - [Stage 7 AI Log](ai-log/etapa-07.md)
 - [Stage 8 AI Log](ai-log/etapa-08.md)
+- [Stage 9 AI Log](ai-log/etapa-09.md)
